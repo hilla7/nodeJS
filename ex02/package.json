@@ -1,0 +1,17 @@
+{
+  "name": "ex02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node server1.js",
+    "client": "node client.js",
+    "scale-server": "node scale-server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cluster": "^0.7.7"
+  }
+}
