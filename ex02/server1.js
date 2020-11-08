@@ -1,12 +1,10 @@
 const http = require('http');
-let sequenceNumber = 0;
-const sleep = (ms) => {
-    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
-}
+const sleepModule = require('./sleep');
 
+let sequenceNumber = 0;
 
 const requestListener = (req, res) => {
-    sleep(2000);
+    sleepModule.sleep(2000);
     res.writeHead(200);
     res.end(`[SERVER Response] request ${++sequenceNumber} Ended!`);
 }

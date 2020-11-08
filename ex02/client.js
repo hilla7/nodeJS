@@ -2,7 +2,7 @@ const http = require('http');
 
 const options = {
     host: 'localhost',
-    port: 5001,
+    port: 8080,
 };
 
 const callback = (response) => {
@@ -15,7 +15,7 @@ const callback = (response) => {
         console.log(result);
     });
     response.on('error', (error) => {
-        console.log(error);
+        console.error(error);
     });
 }
 
