@@ -1,0 +1,14 @@
+[
+    {
+        "id": "ed57ecc3-6d88-4cfa-bd7f-1fd70e23944f",
+        "categoryId": "ed57ecc3-6d88-4cfa-bd7f-1fd70e23944g",
+        "name": "coffee",
+        "itemsInStock": 100
+    },
+    {
+        "id": "ed57ecc3-6d88-4cfa-bd7f-1fd70e23944h",
+        "categoryId": "ed57ecc3-6d88-4cfa-bd7f-1fd70e23944i",
+        "name": "milk",
+        "itemsInStock": 80
+    }
+]

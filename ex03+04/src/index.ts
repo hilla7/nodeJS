@@ -1,3 +1,8 @@
-const i = 2;
+import { app } from './app';
 
-console.log('hello', i);
+app.set('port', process.env.PORT || 8000);
+
+app.listen(app.get('port'), () => {
+  console.log('Application is running at http://localhost:%d in %s mode', app.get('port'), app.get('env'));
+  console.log('Press CTRL+C to stop\n');
+});
