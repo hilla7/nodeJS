@@ -8,7 +8,13 @@
     {
         "id": "ed57ecc3-6d88-4cfa-bd7f-1fd70e23944h",
         "categoryId": "ed57ecc3-6d88-4cfa-bd7f-1fd70e23944i",
-        "name": "milk",
+        "name": "apple",
+        "itemsInStock": 80
+    },
+    {
+        "id": "ed57ecc3-6d88-4cfa-bd7f-1fd70e23944h",
+        "categoryId": "ed57ecc3-6d88-4cfa-bd7f-1fd70e23944g",
+        "name": "tea",
         "itemsInStock": 80
     }
 ]

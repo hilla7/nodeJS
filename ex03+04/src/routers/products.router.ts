@@ -1,28 +1,28 @@
 import { Router } from "express";
-import { createNewProductHandler, updateProductHandler, deleteProductHandler, getProductsHandler } from "../handlers/products.handler";
-import { validateProductIdHandler, resolveProductHandler, validateReceivedProductHandler } from "../validators/products.validator";
+import { getProductsHandler } from "../handlers/products.handler";
+import { validateIdHandler, validateReceivedPayloadHandler } from "../validators/items.validator";
 import { HttpStatusCode } from "../models/http-status-code.model";
+import { createNewItemHandler, updateItemHandler, deleteItemHandler, resolveItemHandler } from "../handlers/items.handler";
 
 const productsRouter = Router();
 
 productsRouter.get('/', getProductsHandler, (request, response) => {
-  response.send(response.locals.products);
+  response.send(response.locals.items);
 });
 
-
-productsRouter.get('/:id', validateProductIdHandler, getProductsHandler, resolveProductHandler, (request, response) => {
-  response.send(response.locals.product);
+productsRouter.get('/:id', validateIdHandler, getProductsHandler, resolveItemHandler, (request, response) => {
+  response.send(response.locals.item);
 });
 
-productsRouter.post('/', validateReceivedProductHandler, getProductsHandler, createNewProductHandler, (request, response) => {
-  response.status(HttpStatusCode.Created).send(response.locals.product);
+productsRouter.post('/', validateReceivedPayloadHandler, getProductsHandler, createNewItemHandler, (request, response) => {
+  response.status(HttpStatusCode.Created).send(response.locals.item);
 });
 
-productsRouter.put('/:id', validateProductIdHandler, validateReceivedProductHandler, getProductsHandler, resolveProductHandler, updateProductHandler, (request, response) => {
-  response.send(response.locals.product);
+productsRouter.put('/:id', validateIdHandler, validateReceivedPayloadHandler, getProductsHandler, resolveItemHandler, updateItemHandler, (request, response) => {
+  response.send(response.locals.item);
 });
 
-productsRouter.delete('/:id', validateProductIdHandler, getProductsHandler, resolveProductHandler, deleteProductHandler, (request, response) => {
+productsRouter.delete('/:id', validateIdHandler, getProductsHandler, resolveItemHandler, deleteItemHandler, (request, response) => {
   response.sendStatus(HttpStatusCode.NoContent);
 });
 
