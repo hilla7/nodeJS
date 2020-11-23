@@ -1,4 +1,4 @@
-export interface Item {
+export interface IItemDto {
     id: string;
     name: string;
 }

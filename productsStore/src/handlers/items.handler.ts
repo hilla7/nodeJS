@@ -1,7 +1,7 @@
 import { RouteHandler } from "../models/route-handler.model";
 import { generateId } from "../utils/id-generator.util";
 import * as logger from "../utils/logger.util";
-import { Item } from "../models/dto/item.model";
+import { IItemDto } from "../models/dto/item.dto";
 import { HttpError } from "../models/http-error.model";
 import { HttpStatusCode } from "../models/http-status-code.model";
 
@@ -32,7 +32,7 @@ export const deleteItemHandler: RouteHandler = (request, response, next) => {
 }
 
 export const resolveItemHandler: RouteHandler = (request, response, next) => {
-    const items: Item[] = response.locals.items;
+    const items: IItemDto[] = response.locals.items;
     const itemId = request.params.id;
 
     const foundItemIndex = items.findIndex((item) => item.id === itemId);

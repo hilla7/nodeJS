@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getCategoriesHandler } from "../handlers/categories.handler";
-import { validateIdHandler, validateReceivedPayloadHandler } from "../validators/items.validator";
+import { validateIdHandler, validateReceivedPayloadHandler, validateItemNameHandler } from "../validators/items.validator";
 import { createNewItemHandler, updateItemHandler, deleteItemHandler, resolveItemHandler } from "../handlers/items.handler";
 import { HttpStatusCode } from "../models/http-status-code.model";
 import { getProductsHandler, getProductsByCategoryHandler } from "../handlers/products.handler";
@@ -20,11 +20,11 @@ categoriesRouter.get('/:id/products', validateIdHandler, getCategoriesHandler, r
   response.send(response.locals.items);
 });
 
-categoriesRouter.post('/', validateReceivedPayloadHandler, getCategoriesHandler, createNewItemHandler, (request, response) => {
+categoriesRouter.post('/', validateReceivedPayloadHandler, validateItemNameHandler, getCategoriesHandler, createNewItemHandler, (request, response) => {
   response.status(HttpStatusCode.Created).send(response.locals.item);
 });
 
-categoriesRouter.put('/:id', validateIdHandler, validateReceivedPayloadHandler, getCategoriesHandler, resolveItemHandler, updateItemHandler, (request, response) => {
+categoriesRouter.put('/:id', validateIdHandler, validateReceivedPayloadHandler, validateItemNameHandler, getCategoriesHandler, resolveItemHandler, updateItemHandler, (request, response) => {
   response.send(response.locals.item);
 });
 
