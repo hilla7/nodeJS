@@ -18,13 +18,13 @@ export const customHttpErrorHandler: ErrorHandler = (error, request, response, n
 
 export const clientErrorHandler: ErrorHandler = (error, request, response, next) => {
     if (!request.xhr) {
-        response.status(500).send({ error: 'Something went wrong' });
+        response.status(HttpStatusCode.InternalServerError).send({ error: 'Something went wrong' });
     } else {
         next(error);
     }
 }
 
 export const errorHandler: ErrorHandler = (error, request, response, next) => {
-    response.status(500);
+    response.status(HttpStatusCode.InternalServerError);
     response.render('error', { error: error });
 }

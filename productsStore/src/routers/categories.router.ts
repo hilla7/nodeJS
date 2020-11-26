@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { getCategoriesHandler } from "../handlers/categories.handler";
-import { validateIdHandler, validateReceivedPayloadHandler, validateItemNameHandler } from "../validators/items.validator";
+import { getCategoriesHandler, getCategoriesAsyncHandler } from "../handlers/categories.handler";
+import { validateIdHandler, validateReceivedPayloadHandler, validateItemNameHandler } from "../middleware/validators/items.validator";
 import { createNewItemHandler, updateItemHandler, deleteItemHandler, resolveItemHandler } from "../handlers/items.handler";
 import { HttpStatusCode } from "../models/http-status-code.model";
 import { getProductsHandler, getProductsByCategoryHandler } from "../handlers/products.handler";
@@ -8,11 +8,10 @@ import { getProductsHandler, getProductsByCategoryHandler } from "../handlers/pr
 const categoriesRouter = Router();
 
 categoriesRouter.get('/', getCategoriesHandler, (request, response) => {
-  console.log('response.locals.items', response.locals.items)
   response.send(response.locals.items);
 });
 
-categoriesRouter.get('/:id', validateIdHandler, getCategoriesHandler, resolveItemHandler, (request, response) => {
+categoriesRouter.get('/:id', validateIdHandler, getCategoriesAsyncHandler, resolveItemHandler, (request, response) => {
   response.send(response.locals.item);
 });
 

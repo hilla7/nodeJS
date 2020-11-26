@@ -1,7 +1,8 @@
 import * as logger from '../utils/logger.util';
 import { RouteHandler } from '../models/route-handler.model';
 
-export const logRequest: RouteHandler = (request, response, next) => {
+export function logRequest(): RouteHandler {
+  return (request, response, next) => {
     const url = request.url;
     logger.log(`[New request received] ${url}`);
 
@@ -9,3 +10,4 @@ export const logRequest: RouteHandler = (request, response, next) => {
 
     next();
   }
+}
