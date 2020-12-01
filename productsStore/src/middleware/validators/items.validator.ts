@@ -3,24 +3,25 @@ import { RouteHandler } from "../../models/route-handler.model";
 import { isEmpty } from "../../utils/json-helper.util";
 import { HttpError } from "../../models/http-error.model";
 import { IItemDto } from "../../models/dto/item.dto";
+import { validateId, validateItemName } from "../../utils/validations.util";
 
-const validIdLength: number = 36;
-const validNameMinimumLength: number = 3;
 
 export const validateIdHandler: RouteHandler = (request, response, next) => {
     const id = request.params.id;
+    const errorMessage = validateId(id);
 
-    if (!id || id.length !== validIdLength) {
-        throw new HttpError(HttpStatusCode.BadRequest, `illegal id ${id} received`);
+    if (errorMessage) {
+        throw new HttpError(HttpStatusCode.BadRequest, `illegal id ${id} received: ${errorMessage}`);
     }
     next();
 };
 
 export const validateItemNameHandler: RouteHandler = (request, response, next) => {
     const payloadItem: IItemDto = response.locals.payloadItem;
+    const errorMessage = validateItemName(payloadItem.name);
 
-    if(payloadItem.name.length < validNameMinimumLength){
-        throw new HttpError(HttpStatusCode.BadRequest, `illegal item name '${payloadItem.name}' received`);
+    if (errorMessage) {
+        throw new HttpError(HttpStatusCode.BadRequest, `illegal item name '${payloadItem.name}' received: ${errorMessage}`);
     }
 
     next();
