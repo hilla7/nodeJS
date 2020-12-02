@@ -1,10 +1,12 @@
 import winston from 'winston';
 import { TransformableInfo } from 'logform';
+import { LogLevel } from '../../models/log-level.model';
 
-export function createLoggerConfig() {
+
+export function createLoggerConfig(level: LogLevel = LogLevel.Info) {
   return {
     transports: [
-      new winston.transports.Console(),
+      new winston.transports.Console({level: level}),
     ],
     format: winston.format.combine(
       winston.format.colorize(),
@@ -22,7 +24,7 @@ function createLogTemplate(info: TransformableInfo): string {
     timestamp, level, message, meta, name
   } = info;
 
-  const messageName = name ||  'ProductsApp';
+  const messageName = name || 'ProductsApp';
   const formattedTs = formatTimestamp(timestamp);
   const template = `${formattedTs} [${level}] [${messageName}]: ${message} ${meta && meta.message ? meta.message + '\n' : ''}`;
   return template;

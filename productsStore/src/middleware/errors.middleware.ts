@@ -1,14 +1,6 @@
 import { ErrorHandler } from "../models/error-handler.model";
 import { HttpError } from "../models/http-error.model";
 import { HttpStatusCode } from "../models/http-status-code.model";
-import { createLogger } from "../utils/logger/logger.util";
-
-const logger = createLogger('Errors');
-
-export const logErrors: ErrorHandler = (error, request, response, next) => {
-    logger.error(error.stack);
-    next(error);
-}
 
 export const customHttpErrorHandler: ErrorHandler = (error, request, response, next) => {
     const httpErrorStatus: HttpStatusCode = error && (error as HttpError).status;
