@@ -6,5 +6,9 @@ export const getProducts: () => IProductDto[] = () => {
 }
 
 export function getProductsAsync(): Promise<IProductDto[]> {
-    return Promise.resolve(getProducts());
+    const products = getProducts();
+    if (!products) {
+        return Promise.reject('products collection not found!');
+    }
+    return Promise.resolve(products);
 }

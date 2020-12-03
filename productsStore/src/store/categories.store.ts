@@ -6,5 +6,9 @@ export const getCategories: () => ICategoryDto[] = () => {
 }
 
 export function getCategoriesAsync(): Promise<ICategoryDto[]> {
-    return Promise.resolve(getCategories());
+    const categories = getCategories();
+    if(!categories){
+        return Promise.reject('categories collection not found!');
+    }
+    return Promise.resolve(categories);
 }
